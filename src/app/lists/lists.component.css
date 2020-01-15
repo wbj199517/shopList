@@ -1,0 +1,20 @@
+.item {
+    cursor: pointer;
+    background-color: white;
+    opacity: 0.6;
+  transition: 0.3s;
+}
+.item:hover{
+    opacity: 1
+}
+.selected{
+    opacity: 1;
+
+}
+.mark{
+    position: absolute;
+    right:0;
+}
+.checked{
+    text-decoration: line-through;
+}

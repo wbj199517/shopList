@@ -1,0 +1,48 @@
+
+<h2>Shopping List   <button mat-button color="primary" (click)= "addItem()">{{addNew?"Hide Adding":"+ Add New Item"}}</button></h2>
+ <div *ngIf="addNew">
+    <div>
+        <h3> Add new item </h3>
+        <label>New Item Title:
+          <input [(ngModel)]="itemTitle" placeholder="name"/>
+        </label>
+        <label>New Item Note:
+            <input [(ngModel)]="itemNote" placeholder="note"/>
+          </label>
+
+          <button mat-button color="primary" (click)= "onSubmit()">Add</button>
+      </div>
+ </div>   
+<mat-list>
+       
+        <mat-list-item *ngFor="let item of items"  >
+           <h4 (click) = "viewItem(item)"  class="item" [class.selected]="item === selectedItem"[class.checked]="item.checked === true" > {{item.title|uppercase}}</h4>
+           <button mat-button color="primary" (click)= "onCheck(item)" class="mark">{{item.checked?"unmark":"mark"}}</button>
+
+            <mat-divider></mat-divider>
+        </mat-list-item>
+</mat-list>
+  
+<div *ngIf="selectedItem">
+    
+    <h2>{{selectedItem.title}} Details</h2>
+    <div><span>Note: </span>{{selectedItem.note}}</div>
+    <button mat-flat-button  color="primary" (click)= "closeDetail()">Close detail</button>
+    <div class="operation" >
+        <button mat-button color="primary" (click)= "editItem(selectedItem)">Edit</button>
+         <button mat-button color="warn" (click)="deleteItem(selectedItem)">Delete</button>
+         </div>
+</div>
+
+<div *ngIf="isEdit">
+    <h2>Edit {{selectedItem.title}} </h2>
+    <label>Edit Item Title:
+    <input [(ngModel)]="editTitle" placeholder="title"/>
+    </label>
+    <label>Edit Item Note:
+    <input [(ngModel)]="editNote" placeholder="note"/>
+    </label>
+    <button mat-button color="primary" (click)= "onEdit(selectedItem)">Confirm Edit</button>
+
+</div>
+
